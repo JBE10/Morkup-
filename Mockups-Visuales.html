@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockups Visuales (Rústicos) - SportMatch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Fuente base limpia */
+            background-color: #e9e9e9; /* Fondo de página tipo papel */
+            padding: 20px;
+        }
+        .mockup-page-title {
+            font-family: 'Kalam', cursive; /* Fuente tipo "hecha a mano" para el título principal */
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .mockup-screen-title-container { /* Contenedor para el título de cada pantalla de mockup */
+            font-family: 'Kalam', cursive;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .mockup-container {
+            border: 2px solid #5a5a5a; /* Borde del "teléfono" más marcado */
+            border-radius: 10px; /* Menos redondeado, más esquemático */
+            width: 380px; 
+            height: 780px; 
+            background-color: #ffffff; /* Fondo blanco para la pantalla del mockup */
+            color: #333333; /* Texto oscuro principal */
+            padding: 15px;
+            margin: 20px auto; 
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 5px 0px #cccccc; /* Sombra simple, efecto levantado */
+            font-family: 'Kalam', cursive; /* Fuente "hecha a mano" para el contenido del mockup */
+            overflow-y: auto; /* Permitir scroll si el contenido excede la altura */
+        }
+
+        /* Estilo base para los bloques de contenido del wireframe */
+        .wireframe-block {
+            border: 2px solid #6d6d6d; /* Borde tipo lápiz */
+            border-radius: 3px; /* Esquinas ligeramente redondeadas, como dibujadas */
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #444444;
+            background-color: #f9f9f9; /* Fondo muy claro para los bloques */
+            position: relative; /* Para posibles decoraciones "sketchy" */
+        }
+        
+        /* Simular un borde un poco irregular o doble */
+        .wireframe-block::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            right: 1px;
+            bottom: 1px;
+            border: 1px solid #888888;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+
+        .wireframe-block.logo {
+            font-size: 1.6em;
+            padding: 12px;
+            font-weight: bold;
+            color: #006400; /* Verde oscuro para el logo */
+            background-color: #e8f5e9; /* Fondo verde muy pálido */
+        }
+
+        .wireframe-block.button {
+            background-color: #d0e0d0; /* Fondo de botón suave */
+            color: #224422; 
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .wireframe-block.button:hover {
+            background-color: #c0d0c0;
+        }
+
+        .wireframe-block.button-dark {
+            background-color: #e0e0e0; /* Gris claro para botones secundarios */
+            color: #333;
+            border: 2px solid #555555;
+        }
+         .wireframe-block.button-dark:hover {
+            background-color: #d0d0d0;
+        }
+
+
+        .wireframe-block.text-link {
+            border: none;
+            background-color: transparent;
+            color: #0055cc; /* Azul para enlaces */
+            padding: 4px;
+            font-size: 0.9em;
+            text-decoration: underline;
+        }
+        .wireframe-block.text-link::before{
+            border: none;
+        }
+
+        .wireframe-block.image-placeholder {
+            height: 150px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: normal;
+            background-color: #f0f0f0;
+            color: #777;
+            font-size: 1.2em;
+        }
+         .wireframe-block.image-placeholder::after { /* Simular un "X" de placeholder */
+            content: '🖼️'; /* O usar "X" o "IMG" */
+            font-size: 2em;
+            color: #aaa;
+        }
+
+
+        .wireframe-block.profile-card-mockup {
+            height: auto; /* Ajustar altura al contenido */
+            min-height: 280px;
+            background-color: #fdfdfd;
+            padding: 10px;
+        }
+        .profile-card-mockup .info-text {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .profile-card-mockup .sports-tags-container span {
+            border: 1px solid #888;
+            padding: 3px 6px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 4px;
+            background-color: #e8e8e8;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+
+        .profile-card-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top:10px;
+            padding: 10px 0;
+        }
+        .profile-card-actions .action-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-family: sans-serif; /* Para que los iconos se vean más estándar */
+        }
+        .action-icon.reject { color: #cc0000; background-color: #ffe0e0;}
+        .action-icon.accept { color: #008800; background-color: #e0ffe0;}
+
+        .nav-bar-mockup {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 5px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #888888;
+        }
+        .nav-bar-mockup .nav-icon-text { /* Para representar iconos con texto */
+            font-size: 1.1em;
+            color: #555;
+            font-family: sans-serif;
+        }
+        .nav-bar-mockup .nav-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .list-item-mockup {
+            display: flex;
+            align-items: center;
+            padding: 8px 5px;
+            border-bottom: 1px dashed #aaaaaa; /* Borde discontinuo para ítems de lista */
+        }
+        .list-item-mockup:last-child {
+            border-bottom: none;
+        }
+        .list-item-mockup .avatar-placeholder {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #dddddd;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size:0.8em;
+            color: #777;
+            border: 1px solid #bbb;
+        }
+        .list-item-mockup .text-content {
+            flex-grow: 1;
+        }
+         .list-item-mockup .text-content .name {
+            font-weight: bold;
+            font-size: 1em;
+         }
+         .list-item-mockup .text-content .message-preview {
+            font-size: 0.85em;
+            color: #555;
+         }
+        .list-item-mockup .timestamp-unread {
+            font-size: 0.75em;
+            color: #666;
+            text-align: right;
+        }
+        .list-item-mockup .unread-badge {
+            background-color: #006400; /* Verde oscuro */
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            font-family: sans-serif;
+        }
+
+
+        .input-field-mockup {
+            border: 2px solid #6d6d6d;
+            border-radius: 3px;
+            padding: 8px; /* Reducido */
+            width: 100%;
+            margin-bottom: 8px; /* Ajustado */
+            background-color: #fdfdfd;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .input-field-mockup::before { border: none; } /* No necesita el doble borde */
+
+
+        .profile-section-container { /* Contenedor para secciones en "Mi Perfil" */
+            margin-bottom: 10px; /* Reducido */
+            padding: 8px; /* Reducido */
+            border: 1px dashed #aaaaaa;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .profile-section-container .title {
+            font-weight: bold;
+            margin-bottom: 4px; /* Reducido */
+            font-size: 1.1em;
+            color: #333;
+        }
+        .profile-section-container .content-text {
+             font-size: 0.9em;
+             color: #444;
+             padding: 5px;
+             background-color: #fff;
+             border: 1px solid #ddd;
+             border-radius: 3px;
+             margin-bottom: 5px;
+        }
+         .profile-section-container .sports-tags-container span {
+            border: 1px solid #888;
+            padding: 3px 6px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 4px;
+            background-color: #e8e8e8;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+
+        .screen-title-app-style { /* Título de la app dentro de la pantalla, ej: SportMatch */
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #006400; /* Verde oscuro */
+        }
+         .screen-subtitle-app-style { /* Subtítulo debajo del título de la app */
+            font-size: 0.9em;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #555555;
+        }
+        .separator-text {
+            font-size: 0.9em;
+            color: #777;
+            margin: 10px 0;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1 class="mockup-page-title">Mockups Visuales (Estilo Rústico): SportMatch</h1>
+
+    <div class="mockup-screen-title-container">Pantalla 1: Bienvenida</div>
+    <div class="mockup-container">
+        <div class="wireframe-block logo">SportMatch</div>
+        <div class="screen-subtitle-app-style">Conecta con personas que comparten tus intereses deportivos en Buenos Aires</div>
+        <div class="wireframe-block button">Empecemos</div>
+        <div class="separator-text text-center my-3">o</div>
+        <div class="wireframe-block button-dark">Iniciar sesión</div>
+        <div class="wireframe-block text-link mt-2">Registrarse</div>
+    </div>
+
+    <div class="mockup-screen-title-container">Pantalla 2: Menú Principal</div>
+    <div class="mockup-container">
+        <div class="screen-title-app-style">SportMatch</div>
+        <div class="screen-subtitle-app-style">¿Qué te gustaría hacer?</div>
+        <div class="wireframe-block button">Comenzar a buscar</div>
+        <div class="wireframe-block button-dark">Mi perfil</div>
+        <div class="wireframe-block button-dark">Mis mensajes</div>
+    </div>
+
+    <div class="mockup-screen-title-container">Pantalla 3: Descubrir</div>
+    <div class="mockup-container">
+        <div class="nav-bar-mockup">
+            <div class="nav-icon-text">(←)</div>
+            <div class="nav-title">Descubrir</div>
+            <div class="nav-icon-text">(✳️)</div>
+        </div>
+        <div class="wireframe-block profile-card-mockup">
+            <div class="wireframe-block image-placeholder flex-grow mb-3"></div>
+            <div class="p-1">
+                <div class="font-bold text-lg info-text">Elias Ojeda, 25</div>
+                <div class="text-sm text-gray-600 info-text">Recoleta, CABA</div>
+                <div class="mt-1 sports-tags-container">
+                    <span>Básquet</span>
+                    <span>Running</span>
+                    <span>Ciclismo</span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-card-actions">
+            <div class="action-icon reject">✕</div>
+            <div class="action-icon accept">✓</div>
+        </div>
+        <div class="wireframe-block text-xs mt-1 p-2 text-center">
+            Info adicional: Perfil Deportivo, Distancia, etc.
+        </div>
+    </div>
+
+    <div class="mockup-screen-title-container">Pantalla 4: Mi Perfil</div>
+    <div class="mockup-container">
+        <div class="nav-bar-mockup">
+            <div class="nav-icon-text">(←)</div>
+            <div class="nav-title">Mi Perfil</div>
+            <div class="flex">
+                <span class="nav-icon-text mr-2">(✳️)</span>
+                <span class="nav-icon-text">(✏️)</span>
+            </div>
+        </div>
+        <div class="flex flex-col items-center my-2"> 
+            <div class="w-20 h-20 rounded-full mb-2 wireframe-block image-placeholder text-sm">[Foto]</div>
+            <div class="font-bold text-xl">Tomás, 28</div>
+            <div class="text-sm text-gray-600">📍 Palermo, Buenos Aires</div>
+        </div>
+
+        <div class="profile-section-container">
+            <div class="title">Sobre mí</div>
+            <div class="content-text">Apasionado del deporte y la vida al aire libre. Busco compañeros para practicar tenis y running regularmente.</div>
+        </div>
+
+        <div class="profile-section-container">
+            <div class="title">Mis deportes</div>
+            <div class="sports-tags-container">
+                <span>Tenis</span>
+                <span>Running</span>
+                <span>Natación</span>
+                <span>Yoga</span>
+            </div>
+            <div class="wireframe-block button-dark text-sm mt-1">Editar deportes</div> 
+        </div>
+         <div class="profile-section-container">
+            <div class="title">Configuración de cuenta</div>
+            <div class="input-field-mockup text-sm">Nombre: Tomás</div>
+            <div class="input-field-mockup text-sm">Email: tomas.fernandez@ejemplo.com</div>
+            <div class="input-field-mockup text-sm">Ubicación: Palermo, Buenos Aires</div>
+        </div>
+    </div>
+
+    <div class="mockup-screen-title-container">Pantalla 5: Mensajes</div>
+    <div class="mockup-container">
+        <div class="nav-bar-mockup">
+            <div class="nav-icon-text">(←)</div>
+            <div class="nav-title">Mensajes</div>
+            <div class="nav-icon-text">(✳️)</div>
+        </div>
+        <div class="input-field-mockup my-2 text-sm">(🔍) Buscar conversaciones</div>
+        
+        <div class="list-item-mockup">
+            <div class="avatar-placeholder">(AV)</div>
+            <div class="text-content">
+                <div class="name">Santiago López</div>
+                <div class="message-preview truncate">Hola ! ¿ Te gustaría practicar deportes ju ...</div>
+            </div>
+            <div class="flex flex-col items-end">
+                <div class="timestamp-unread">5/15/25</div>
+                <div class="unread-badge">3</div>
+            </div>
+        </div>
+        <div class="list-item-mockup">
+            <div class="avatar-placeholder">(AV)</div>
+            <div class="text-content">
+                <div class="name">Martín Acosta</div>
+                <div class="message-preview truncate">Hola ! ¿ Te gustaría practicar deportes juntos ?</div>
+            </div>
+             <div class="timestamp-unread">5/16/25</div>
+        </div>
+         <div class="list-item-mockup">
+            <div class="avatar-placeholder">(AV)</div>
+            <div class="text-content">
+                <div class="name">Mauro Brero</div>
+                <div class="message-preview truncate">Hola ! ¿ Te gustaría practicar deportes juntos ?</div>
+            </div>
+            <div class="timestamp-unread">5/16/25</div>
+        </div>
+        <div class="list-item-mockup">
+            <div class="avatar-placeholder">(AV)</div>
+            <div class="text-content">
+                <div class="name">Elias Ojeda</div>
+                <div class="message-preview truncate">Hola ! ¿ Te gustaría practicar deportes ju ...</div>
+            </div>
+            <div class="flex flex-col items-end">
+                <div class="timestamp-unread">5/20/25</div>
+                <div class="unread-badge">3</div>
+            </div>
+        </div>
+        </div>
+
+</body>
+</html>
